@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Post>
+
+@{
+
+    var SelectSliderFirstElement = (from Item in Model
+                              orderby Item.ID descending
+                              select Item).Take(1);
+
+    var SelectSliderAnotherElements = (from Item in Model
+                               orderby Item.ID descending
+                               select Item).Skip(1).Take(4);
+
+}
+
+
+<div class="col-md-6">
+    <div class="feature_news_carousel">
+        <div id="featured-news-carousal" class="carousel slide" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+
+                @foreach (var item in SelectSliderFirstElement)
+                {
+                    <div class="item active feature_news_item">
+                        <div class="item_wrapper">
+                            <div class="item_img">
+                                <img style="width:100%;" class="img-responsive" src="@item.Image" alt="@item.Name">
+                            </div> <!--item_img-->
+                            <div class="item_title_date">
+                                <div class="news_item_title">
+                                    <h2><a href="~/home/readpost/@item.ID">@item.Name</a></h2>
+                                </div>
+                                <div class="item_meta">@item.Date Sub Category:@item.SubCategory.Name</div>
+                            </div> <!--item_title_date-->
+                        </div>	<!--item_wrapper-->
+                        
+                    </div>
+                }
+
+
+                @foreach (var item in SelectSliderAnotherElements)
+                {
+                    <div class="item feature_news_item">
+                        <div class="item_wrapper">
+                            <div class="item_img">
+                                <img class="img-responsive" src="@item.Image" alt="@item.Name">
+                            </div> <!--item_img-->
+                            <div class="item_title_date">
+                                <div class="news_item_title">
+                                    <h2><a href="~/home/readpost/@item.ID">@item.Name</a></h2>
+                                </div>
+                                <div class="item_meta">@item.Date Sub Category:@item.SubCategory.Name</div>
+                            </div> <!--item_title_date-->
+                        </div>	<!--item_wrapper-->
+                       
+                    </div>
+                }
+
+
+                <!-- Left and right controls -->
+                <div class="control-wrapper">
+                    <a class="left carousel-control" href="#featured-news-carousal" role="button" data-slide="prev">
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    </a>
+                    <a class="right carousel-control" href="#featured-news-carousal" role="button" data-slide="next">
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div><!--carousel-inner-->
+        </div><!--carousel-->
+    </div><!--feature_news_carousel-->
+</div><!--col-md-6-->

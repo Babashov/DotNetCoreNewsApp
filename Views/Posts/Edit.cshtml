@@ -1,0 +1,117 @@
+﻿@model NewsManagementDotNetCoreApp.Models.PostViewModels.PostViewModel
+@using NewsManagementDotNetCoreApp.Extensions
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#CategoryId').change(function () {
+            getSubCategory();
+        })
+    });
+
+    function getSubCategory() {
+        var url = '@Url.Content("~/")' + "Posts/GetSubCategory";
+        var ddlsource = "#CategoryId";
+        $.getJSON(url, { CategoryID: $(ddlsource).val() }, function (data) {
+
+            var items = '';
+            $("#SubCategoryId").empty();
+            $.each(data, function (i, subcategory) {
+                items += "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>";
+            });
+            $('#SubCategoryId').html(items);
+        })
+
+    }
+</script>
+
+
+<br />
+<h2>Edit Menu Item</h2>
+<br />
+<form method="post" enctype="multipart/form-data">
+    <div class="form-border row">
+        <input type="hidden" asp-for="Post.ID" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Post.Name" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Post.Name" class="form-control" />
+                </div>
+                <span asp-validation-for="Post.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Post.Desc" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <textarea asp-for="Post.Desc" class="form-control"></textarea>
+                </div>
+                <span asp-validation-for="Post.Desc" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Post.PostPlaceId" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="@Model.Post.PostPlaceId" asp-items="Model.PostPlace.AnarKerimov(Model.Post.PostPlaceId)" class="form-control"></select>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Post.Image" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="files" multiple class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Post.CategoryId" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="@Model.Post.CategoryId" id="CategoryId" asp-items="Model.Category.AnarKerimov(Model.Post.CategoryId)" class="form-control"></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Post.SubCategoryId" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="Post.SubCategoryId" name="SubCategoryId" id="SubCategoryId" asp-items="Model.SubCategory.AnarKerimov(Model.Post.SubCategoryId)" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-3">
+            <img src="@Model.Post.Image" width="300px" height="300px" style="border-radius:5px;border:1px solid #bbb9b9;" />
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Update" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<NewsManagementDotNetCoreApp.Models.Post>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2>Post List</h2>
+<br />
+@Html.Partial("_LoginPartialButton")
+<div class="form-border">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.PostPlaceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.CategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.SubCategoryId)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.PostPlace.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.SubCategory.Name)
+                </td>
+                <td>
+                    @Html.Partial("_TablePartialButtons", item.ID)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+

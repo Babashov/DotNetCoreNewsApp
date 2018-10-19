@@ -1,0 +1,111 @@
+﻿@model NewsManagementDotNetCoreApp.Models.HomeViewModels.IndexViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+
+
+@* Slider Section *@
+
+<!-- Feature Carousel Section -->
+<section id="feature_news_section" class="feature_news_section section_wrapper">
+    <div class="container">
+        <div class="row">
+
+            @Html.Partial("_SliderPartial", Model.Post.Where(s => s.PostPlace.Name.Equals("Slider")).OrderByDescending(s => s.ID).Take(5))
+
+            @Html.Partial("_SliderAsidePartial", Model.Post.Where(s => s.PostPlace.Name.Equals("Slider Aside")).OrderByDescending(s => s.ID).Take(2))
+
+
+        </div><!--row-->
+    </div><!--container-->
+</section><!--feature_news_section-->
+@* Category Section *@
+<div class="col-md-9">
+    @foreach (var category in Model.Category)
+    {
+        <div class="category_layout">
+            <div class="item_caregory blue"><h2><a href="#">@category.Name</a></h2></div>
+
+            @Html.Partial("_CategoryPartial", Model.Post.Where(u => u.Category.Name.Equals(category.Name)))
+
+        </div>
+
+    }
+
+    <div id="more_news_item" class="more_news_item">
+        <div class="more_news_heading"><h2><a href="#">More News</a></h2></div>
+        <div class="row">
+            @Html.Partial("_MoreNewsPartial", Model.Post.Where(u => u.PostPlace.Name.Equals("More News")).OrderByDescending(mr => mr.ID).Take(3))
+        </div><!--row-->
+    </div><!--more_news_item-->
+
+
+</div>
+
+
+<div class="col-md-3">
+
+    <div class="tab sitebar">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#1" data-toggle="tab">Latest</a></li>
+            <li><a href="#2" data-toggle="tab">Populer</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="1">
+
+                @Html.Partial("_LatestSide", Model.Post.Where(a => a.PostPlace.Name.Equals("Latest")).OrderByDescending(c => c.ID).Take(4))
+            </div><!--tab-pane-->
+            <div class="tab-pane" id="2">
+
+                @Html.Partial("_PopulerSide", Model.Post.Where(a => a.PostPlace.Name.Equals("Populer")).OrderByDescending(c => c.ID).Take(4))
+
+            </div><!--tab-pane-->
+        </div><!--tab-content-->
+    </div><!--tab-->
+
+
+    <div class="ad">
+        <img class="img-responsive" src="assets/img/img-sitebar.jpg" alt="img" />
+        <img class="img-responsive" src="assets/img/img-sitebar.jpg" alt="img" />
+        <img class="img-responsive" src="assets/img/img-sitebar.jpg" alt="img" />
+        <img class="img-responsive" src="assets/img/img-sitebar.jpg" alt="img" />
+    </div><!--ad-->
+
+    <div class="ad">
+        <img class="img-responsive" src="assets/img/img-ad.jpg" alt="img" />
+    </div>
+    <div class="ad">
+        <img class="img-responsive" src="assets/img/img-ad2.jpg" alt="img" />
+    </div>
+
+    <div class="most_comment">
+        <div class="sidebar_title">
+            <h2>Most Commented</h2>
+        </div>
+
+        @Html.Partial("_MostCommented", Model.Post.Where(a => a.PostPlace.Name.Equals("Most Commented")).OrderByDescending(c => c.ID).Take(4))
+
+    </div><!--most_comment-->
+
+
+</div>
+
+
+<!-- Feature Video Item -->
+<section id="feature_video_item" class="feature_video_item section_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="feature_video_wrapper">
+                    
+                    @Html.Partial("_FeaturedVideos",Model.Post.Where(a=>a.PostPlace.Name.Equals("Featured Videos")).OrderByDescending(c=>c.ID).Take(6))
+
+                </div><!--col-xs-12-->
+            </div><!--row-->
+        </div><!--feature_video_wrapper-->
+    </div><!--container-->
+</section>
+
+

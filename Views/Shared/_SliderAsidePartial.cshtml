@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Post>
+
+<div class="col-md-6">
+    <div class="feature_news_static">
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6">
+                    <div class="feature_news_item">
+                        <div class="item active">
+                            <div class="item_wrapper">
+                                <div class="item_img">
+                                    <img style="height:415px" class="img-responsive" src="@item.Image" alt="@item.Name">
+                                </div> <!--item_img-->
+                                <div class="item_title_date">
+                                    <div class="news_item_title">
+                                        <h2><a href="~/home/readpost/@item.ID">@item.Name</a></h2>
+                                    </div>
+                                    <div class="item_meta">@item.Date Sub Category: @item.SubCategory.Name</div>
+                                </div><!--item_title_date-->
+                            </div> <!--item_wrapper-->
+                            
+                        </div><!--item-->
+                    </div><!--feature_news_item-->
+                </div>
+            }
+
+        </div><!--row-->
+    </div><!--feature_news_static-->
+</div><!--col-md-6-->

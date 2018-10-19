@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Post>
+
+@foreach (var item in Model)
+{
+    <div class="media">
+        <div class="media-left">
+            <a href="~/home/readpost/@item.ID"><img style="width:80px;height:80px;" class="media-object" src="@item.Image" alt="@item.Name"></a>
+        </div><!--media-left-->
+        <div class="media-body">
+            <h3 class="media-heading"><a href="~/home/readpost/@item.ID">@item.Name</a></h3>
+        </div><!--media-body-->
+    </div><!--media-->
+}

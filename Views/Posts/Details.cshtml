@@ -1,0 +1,68 @@
+﻿@model NewsManagementDotNetCoreApp.Models.PostViewModels.PostViewModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2>Details Post Item</h2>
+<br />
+<div class="form-border row">
+    <div class="col-8">
+        <fieldset disabled>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Post.Name" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Post.Name" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Post.Desc" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <textarea asp-for="Post.Desc" class="form-control"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Post.CategoryId" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Post.Category.Name" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Post.SubCategoryId" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Post.SubCategory.Name" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Post.PostPlaceId" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Post.PostPlace.Name" class="form-control" />
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-3">
+        <img src="@Model.Post.Image" width="300px" height="300px" style="border-radius:5px;border:1px solid #bbb9b9;" />
+    </div>
+    <br />
+    <div class="form-group">
+        <a asp-action="Edit" asp-route-id="@Model.Post.ID" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-success">Back to List</a>
+    </div>
+</div>
+

@@ -1,0 +1,12 @@
+C:\Users\Babashov\source\repos\NewsManagementDotNetCoreApp\bin\Debug\netcoreapp2.0\NewsManagementDotNetCoreApp.deps.json
+C:\Users\Babashov\source\repos\NewsManagementDotNetCoreApp\bin\Debug\netcoreapp2.0\NewsManagementDotNetCoreApp.runtimeconfig.json
+C:\Users\Babashov\source\repos\NewsManagementDotNetCoreApp\bin\Debug\netcoreapp2.0\NewsManagementDotNetCoreApp.runtimeconfig.dev.json
+C:\Users\Babashov\source\repos\NewsManagementDotNetCoreApp\bin\Debug\netcoreapp2.0\NewsManagementDotNetCoreApp.dll
+C:\Users\Babashov\source\repos\NewsManagementDotNetCoreApp\bin\Debug\netcoreapp2.0\NewsManagementDotNetCoreApp.pdb
+C:\Users\Babashov\source\repos\NewsManagementDotNetCoreApp\obj\Debug\netcoreapp2.0\NewsManagementDotNetCoreApp.csprojAssemblyReference.cache
+C:\Users\Babashov\source\repos\NewsManagementDotNetCoreApp\obj\Debug\netcoreapp2.0\NewsManagementDotNetCoreApp.csproj.CoreCompileInputs.cache
+C:\Users\Babashov\source\repos\NewsManagementDotNetCoreApp\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\Babashov\source\repos\NewsManagementDotNetCoreApp\obj\Debug\netcoreapp2.0\NewsManagementDotNetCoreApp.AssemblyInfoInputs.cache
+C:\Users\Babashov\source\repos\NewsManagementDotNetCoreApp\obj\Debug\netcoreapp2.0\NewsManagementDotNetCoreApp.AssemblyInfo.cs
+C:\Users\Babashov\source\repos\NewsManagementDotNetCoreApp\obj\Debug\netcoreapp2.0\NewsManagementDotNetCoreApp.dll
+C:\Users\Babashov\source\repos\NewsManagementDotNetCoreApp\obj\Debug\netcoreapp2.0\NewsManagementDotNetCoreApp.pdb

@@ -1,0 +1,80 @@
+﻿@model NewsManagementDotNetCoreApp.Models.HomeViewModels.IndexViewModel
+
+@{
+    ViewData["Title"] = "Read Post Page";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    int postid = Convert.ToInt16(ViewContext.RouteData.Values["id"]);
+    var categoryName = Model.Post.Where(s => s.ID == postid).Select(s => s.Category.Name).FirstOrDefault();
+}
+
+
+
+<!-- Feature Category Section & sidebar -->
+<section id="feature_category_section" class="feature_category_section single-page section_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+
+                <div class="single_content_layout">
+                    @Html.Partial("_ReadPostIndex", Model.Post.Where(s => s.ID == postid))
+
+                    @Html.Partial("_ReadPostRelatedNews",Model.Post.Where(s=>s.ID != postid && s.Category.Name == categoryName).OrderByDescending(a=>a.ID).Take(3))
+
+                    <div class="ad">
+                        <img class="img-responsive" src="~/assets/img/img-single-ad.jpg" alt="Chania">
+                    </div>
+
+
+                </div>
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="tab sitebar">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#1" data-toggle="tab">Latest</a></li>
+                            <li><a href="#2" data-toggle="tab">Populer</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="1">
+
+                                @Html.Partial("_LatestSide", Model.Post.Where(a => a.PostPlace.Name.Equals("Latest")).OrderByDescending(c => c.ID).Take(4))
+                            </div><!--tab-pane-->
+                            <div class="tab-pane" id="2">
+
+                                @Html.Partial("_PopulerSide", Model.Post.Where(a => a.PostPlace.Name.Equals("Populer")).OrderByDescending(c => c.ID).Take(4))
+
+                            </div><!--tab-pane-->
+                        </div><!--tab-content-->
+                    </div><!--tab-->
+
+
+                    <div class="ad">
+                        <img class="img-responsive" src="~/assets/img/img-sitebar.jpg" alt="img" />
+                        <img class="img-responsive" src="~/assets/img/img-sitebar.jpg" alt="img" />
+                        <img class="img-responsive" src="~/assets/img/img-sitebar.jpg" alt="img" />
+                        <img class="img-responsive" src="~/assets/img/img-sitebar.jpg" alt="img" />
+                    </div><!--ad-->
+
+                    <div class="ad">
+                        <img class="img-responsive" src="~/assets/img/img-ad.jpg" alt="img" />
+                    </div>
+                    <div class="ad">
+                        <img class="img-responsive" src="~/assets/img/img-ad2.jpg" alt="img" />
+                    </div>
+
+                    <div class="most_comment">
+                        <div class="sidebar_title">
+                            <h2>Most Commented</h2>
+                        </div>
+
+                        @Html.Partial("_MostCommented", Model.Post.Where(a => a.PostPlace.Name.Equals("Most Commented")).OrderByDescending(c => c.ID).Take(4))
+
+                    </div><!--most_comment-->
+
+
+                </div>
+
+            </div>
+        </div>
+</section><!--feature_category_section-->

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Post>
+
+@{
+
+    var SelectLeftSideNews = (from Item in Model
+                               orderby Item.ID descending
+                               select Item).Take(1);
+
+    var SelectRightSideNews = (from Item in Model
+                               orderby Item.ID descending
+                               select Item).Skip(1).Take(4);
+
+}
+
+
+    <div class="row">
+        @foreach (var item in SelectLeftSideNews)
+        {
+            <div class="col-md-7">
+                <div class="item active feature_news_item">
+                    <div class="item_wrapper">
+                        <div class="item_img">
+                            <img class="img-responsive" src="@item.Image" alt="@item.Name">
+                        </div><!--item_img-->
+                        <div class="item_title_date">
+                            <div class="news_item_title">
+                                <h2><a href="~/home/readpost/@item.ID">@item.Name</a></h2>
+                            </div><!--news_item_title-->
+                            <div class="item_meta">@item.Date Sub Category:@item.SubCategory.Name</div>
+                        </div><!--item_title_date-->
+                    </div><!--item_wrapper-->
+                </div><!--feature_news_item-->
+            </div><!--col-md-7-->
+        }
+
+
+        <div class="col-md-5">
+            <div class="media_wrapper">
+
+
+                @foreach (var item in SelectRightSideNews)
+                {
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="~/home/readpost/@item.ID"><img class="media-object" style="width:80px;height:80px;" src="@item.Image" alt="@item.Name"></a>
+                        </div><!--media-left-->
+                        <div class="media-body">
+                            <h3 class="media-heading">
+                                <a href="~/home/readpost/@item.ID">
+                                    @item.Name
+                                </a>
+                            </h3>
+                        </div><!--media-body-->
+                    </div><!--media-->
+                }
+
+
+            </div><!--media_wrapper-->
+        </div><!--col-md-5-->
+    </div><!--row-->
